@@ -17,7 +17,7 @@ spec:
       #   - name: ghcr-secret
       containers:
         - name: api-gateway
-          image: ghcr.io/mikejohnpp/api-gateway:9a56376f98bbded4ca12e010837c3a656ca1f5a4
+          image: ghcr.io/mikejohnpp/api-gateway:a6b1f87d4a35439a0bd44c3df10a11f86dd16e70
           ports:
             - containerPort: 8080
           env:
