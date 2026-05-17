@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: maui-backend
+  name: user-service
   namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: maui-backend
+      app: user-service
   template:
     metadata:
       labels:
-        app: maui-backend
+        app: user-service
     spec:
       # imagePullSecrets:
       #   - name: ghcr-secret
       containers:
-        - name: maui-backend
-          image: ghcr.io/mikejohnpp/maui-backend:3286993a8283770d24ddad136828d719035eaae0
+        - name: user-service
+          image: ghcr.io/mikejohnpp/user-service:3286993a8283770d24ddad136828d719035eaae0
           ports:
             - containerPort: 8080
           # resources:
@@ -31,11 +31,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: maui-backend
+  name: user-service
   namespace: default
 spec:
   selector:
-    app: maui-backend
+    app: user-service
   ports:
     - port: 3000
       targetPort: 8080

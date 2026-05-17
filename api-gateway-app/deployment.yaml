@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-templete
+  name: api-gateway
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: service-templete
+      app: api-gateway
   template:
     metadata:
       labels:
-        app: service-templete
+        app: api-gateway
     spec:
       # imagePullSecrets:
       #   - name: ghcr-secret
       containers:
-        - name: service-templete
-          image: ghcr.io/mikejohnpp/service-templete:3286993a8283770d24ddad136828d719035eaae0
+        - name: api-gateway
+          image: ghcr.io/mikejohnpp/api-gateway:3286993a8283770d24ddad136828d719035eaae0
           ports:
             - containerPort: 8080
           # resources:
@@ -31,11 +31,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-templete
+  name: api-gateway
   namespace: default
 spec:
   selector:
-    app: service-templete
+    app: api-gateway
   ports:
     - port: 3001
       targetPort: 8080
