@@ -17,7 +17,7 @@ spec:
       #   - name: ghcr-secret
       containers:
         - name: user-service
-          image: ghcr.io/mikejohnpp/user-service:a6b1f87d4a35439a0bd44c3df10a11f86dd16e70
+          image: ghcr.io/mikejohnpp/user-service:042336453563a8ca3da5178757e03907221f05ed
           ports:
             - containerPort: 8080
           env:
