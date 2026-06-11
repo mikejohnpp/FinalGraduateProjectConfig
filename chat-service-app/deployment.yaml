@@ -17,7 +17,7 @@ spec:
       #   - name: ghcr-secret
       containers:
         - name: chat-service
-          image: ghcr.io/mikejohnpp/chat-service:4e2114753fd628f55ba9c4ec4a16b2b27af0b421
+          image: ghcr.io/mikejohnpp/chat-service:42a50ea93b856206459c13d1bd49ad029c5cd1bc
           ports:
             - containerPort: 8080
           env:
