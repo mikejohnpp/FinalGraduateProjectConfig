@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srl-service
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srl-service
+  template:
+    metadata:
+      labels:
+        app: srl-service
+    spec:
+      # imagePullSecrets:
+      #   - name: ghcr-secret
+      containers:
+        - name: srl-service
+          image: ghcr.io/mikejohnpp/srl-service:9d41e20200fd51346f2bc8eac066cb4fca4f0c46
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+          # resources:
+          #   limits:
+          #     memory: "256Mi"
+          #     cpu: "500m"
+          #   requests:
+          #     memory: "128Mi"
+          #     cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: srl-service
+  namespace: default
+spec:
+  selector:
+    app: srl-service
+  ports:
+    - port: 3000
+      targetPort: 8080
+  type: ClusterIP
