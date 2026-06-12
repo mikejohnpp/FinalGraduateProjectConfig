@@ -18,8 +18,8 @@ spec:
       containers:
         - name: ai-service
           image: ghcr.io/mikejohnpp/ai-service:42a50ea93b856206459c13d1bd49ad029c5cd1bc
-       #   ports:
-       #     - containerPort: 8080
+          ports:
+            - containerPort: 8080
           env:
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: "final-graduate-cluster-kafka-bootstrap.kafka:9092"
@@ -40,7 +40,7 @@ spec:
             - name: MODEL
               value: "htc"
             - name: MAX_LEN
-              value: 40
+              value: "40"
           volumeMounts:
             - name: ai-service-volume
               mountPath: /app/data
@@ -64,7 +64,7 @@ metadata:
 spec:
   selector:
     app: ai-service
-  #ports:
-  #  - port: 3000
-  #    targetPort: 8080
+  ports:
+    - port: 3000
+      targetPort: 8080
   type: ClusterIP
