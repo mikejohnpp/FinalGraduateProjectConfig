@@ -32,10 +32,17 @@ spec:
             - name: MIN_COMMIT_COUNT
               value: "1"
             - name: CORENLP_DIR
-              value: "post.analyze.sentiment"
+              value: "/app/data/preprocessor"
             - name: SRL_API_URL
               value: "http://srl-service:3000/predict"
 
+          volumeMounts:
+            - name: preprocessor-service-volume
+              mountPath: /app/data/preprocessor
+      volumes:
+        - name: preprocessor-service-volume
+          persistentVolumeClaim:
+            claimName: nfs-pvc
           # resources:
           #   limits:
           #     memory: "256Mi"
