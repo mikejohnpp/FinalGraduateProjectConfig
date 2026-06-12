@@ -18,11 +18,36 @@ spec:
       containers:
         - name: ai-service
           image: ghcr.io/mikejohnpp/ai-service:42a50ea93b856206459c13d1bd49ad029c5cd1bc
-          ports:
-            - containerPort: 8080
+       #   ports:
+       #     - containerPort: 8080
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: "prod"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "final-graduate-cluster-kafka-bootstrap.kafka:9092"
+            - name: KAFKA_GROUP_ID
+              value: "ai-service-group"
+            - name: KAFKA_TOPICS
+              value: "post.analyze.sentiment"
+            - name: KAFKA_OUTPUT_TOPIC
+              value: "post.analyze.result"
+            - name: MODEL_DIR
+              value: "/app/data"
+            - name: MODEL_REPO_ID
+              value: "MikeJohnP/HTC_ImplicitSentiment"
+            - name: HF_HOME
+              value: "/app/data"
+            - name: DEVICE
+              value: "cpu"
+            - name: MODEL
+              value: "htc"
+            - name: MAX_LEN
+              value: 40
+          volumeMounts:
+            - name: ai-service-volume
+              mountPath: /app/data
+    volumes:
+      - name: ai-service-volume 
+        persistentVolumeClaim:
+          claimName: nfs-pvc
           # resources:
           #   limits:
           #     memory: "256Mi"
@@ -39,7 +64,7 @@ metadata:
 spec:
   selector:
     app: ai-service
-  ports:
-    - port: 3000
-      targetPort: 8080
+  #ports:
+  #  - port: 3000
+  #    targetPort: 8080
   type: ClusterIP

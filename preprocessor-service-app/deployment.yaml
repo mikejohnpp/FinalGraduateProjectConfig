@@ -18,11 +18,24 @@ spec:
       containers:
         - name: preprocessor-service
           image: ghcr.io/mikejohnpp/preprocessor-service:42a50ea93b856206459c13d1bd49ad029c5cd1bc
-          ports:
-            - containerPort: 8080
+      #    ports:
+      #      - containerPort: 8080
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: "prod"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "final-graduate-cluster-kafka-bootstrap.kafka:9092"
+            - name: KAFKA_GROUP_ID
+              value: "preprocessor-service-group"
+            - name: KAFKA_TOPICS
+              value: "post.analyze.preprocessor"
+            - name: KAFKA_OUTPUT_TOPIC
+              value: "post.analyze.sentiment"
+            - name: MIN_COMMIT_COUNT
+              value: "1"
+            - name: CORENLP_DIR
+              value: "post.analyze.sentiment"
+            - name: SRL_API_URL
+              value: "http://srl-service:3000/predict"
+
           # resources:
           #   limits:
           #     memory: "256Mi"
@@ -39,7 +52,7 @@ metadata:
 spec:
   selector:
     app: preprocessor-service
-  ports:
-    - port: 3000
-      targetPort: 8080
+  #ports:
+    #- port: 3000
+    #  targetPort: 8080
   type: ClusterIP
