@@ -22,7 +22,7 @@ spec:
             - containerPort: 8080
           env:
             - name: ALLENNLP_CACHE_ROOT
-              value: "final-graduate-cluster-kafka-bootstrap.kafka:9092"
+              value: "/app/data/srl"
             - name: MODEL_URL
               value: "https://storage.googleapis.com/allennlp-public-models/structured-prediction-srl-bert.2020.12.15.tar.gz"
             - name: CUDE_DEVICE
@@ -31,6 +31,14 @@ spec:
               value: "0.0.0.0"
             - name: PORT
               value: "8080"
+
+          volumeMounts:
+            - name: ai-service-volume
+              mountPath: /app/data/srl
+      volumes:
+        - name: srl-service-volume
+          persistentVolumeClaim:
+            claimName: nfs-pvc
           # resources:
           #   limits:
           #     memory: "256Mi"
