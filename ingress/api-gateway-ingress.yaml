@@ -15,7 +15,7 @@ spec:
               service:
                 name: api-gateway
                 port:
-                  number: 3001
+                  number: 3000
           - path: /app-socket
             pathType: Prefix
             backend:
