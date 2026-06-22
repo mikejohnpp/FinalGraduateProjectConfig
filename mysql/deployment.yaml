@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-init-script
+data:
+  init.sql: |
+    CREATE USER 'root'@'%' IDENTIFIED BY '';
+    GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+    FLUSH PRIVILEGES;
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-server
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      securityContext:
+        fsGroup: 65534
+      containers:
+        - name: mysql
+          image: mysql:8.4.9
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: ""                 # Đặt mật khẩu root của bạn ở đây
+            # - name: MYSQL_DATABASE
+            #   value: "my_database"        # Tùy chọn: tạo database khi khởi động
+            # - name: MYSQL_USER
+            #   value: "user"                # Tùy chọn: tạo user không phải root
+            # - name: MYSQL_PASSWORD
+            #   value: "user_password"      # Tùy chọn: mật khẩu cho user trên
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: "yes"
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/mysql
+            - name: init-script
+              mountPath: /docker-entrypoint-initdb.d/init.sql
+              subPath: init.sql
+        #  resources:
+        #    requests:
+        #      cpu: "250m"
+        #      memory: "512Mi"
+        #    limits:
+        #      cpu: "1"
+        #      memory: "1Gi"
+      restartPolicy: Always
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: nfs-pvc
+        - name: init-script
+          configMap:
+            name: mysql-init-script
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+      targetPort: 3306
+  type: ClusterIP
