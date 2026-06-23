@@ -23,6 +23,12 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
+            - name: DB_URL
+              value: "jdbc:mysql://mysql-service/FinalGraduateDB?zeroDateTimeBehavior=convertToNull"
+            - name: DB_USERNAME
+              value: "root"
+            - name: DB_PASSWORD
+              value: ""
           # resources:
           #   limits:
           #     memory: "256Mi"

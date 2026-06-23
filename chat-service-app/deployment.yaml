@@ -21,6 +21,12 @@ spec:
           ports:
             - containerPort: 8080
           env:
+            - name: DB_URL
+              value: "jdbc:mysql://mysql-service/FinalGraduateDB?zeroDateTimeBehavior=convertToNull"
+            - name: DB_USERNAME
+              value: "root"
+            - name: DB_PASSWORD
+              value: ""
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
             - name: REDIS_HOST
