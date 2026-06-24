@@ -14,7 +14,7 @@ spec:
         app: ai-service
     spec:
       nodeSelector:
-        kubernetes.io/hostname: worker-1.k8s
+        kubernetes.io/hostname: worker-3.k8s
       containers:
         - name: ai-service
           image: ghcr.io/mikejohnpp/ai-service:efe0fb0840063e3c70043c849c382bc734c32f7a
