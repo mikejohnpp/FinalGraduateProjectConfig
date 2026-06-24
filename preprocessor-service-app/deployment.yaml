@@ -29,6 +29,8 @@ spec:
               value: "post.analyze.preprocessor"
             - name: KAFKA_OUTPUT_TOPIC
               value: "post.analyze.sentiment"
+            - name: KAFKA_RESULT_TOPIC
+              value: "post.analyze.result"
             - name: MIN_COMMIT_COUNT
               value: "1"
             - name: CORENLP_DIR
