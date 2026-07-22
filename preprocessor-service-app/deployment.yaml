@@ -17,7 +17,7 @@ spec:
       #   - name: ghcr-secret
       containers:
         - name: preprocessor-service
-          image: ghcr.io/mikejohnpp/preprocessor-service:106e143c7b0ec65eae3cfb3565a81d6fa867568e
+          image: ghcr.io/mikejohnpp/preprocessor-service:11590146046de5b8fab7fae6b617e18f943109ec
       #    ports:
       #      - containerPort: 8080
           env:
