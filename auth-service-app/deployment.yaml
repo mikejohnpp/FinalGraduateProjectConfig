@@ -17,7 +17,7 @@ spec:
       #   - name: ghcr-secret
       containers:
         - name: auth-service
-          image: ghcr.io/mikejohnpp/auth-service:6971624a865d4aa2c9709d05605d8be412f8d230
+          image: ghcr.io/mikejohnpp/auth-service:acaa91f0cf4bcd6e3b6b948770df65f87bf6195d
           ports:
             - containerPort: 8080
           env:
