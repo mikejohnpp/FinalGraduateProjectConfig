@@ -17,7 +17,7 @@ spec:
         kubernetes.io/hostname: worker-3.k8s
       containers:
         - name: ai-service
-          image: ghcr.io/mikejohnpp/ai-service:acaa91f0cf4bcd6e3b6b948770df65f87bf6195d
+          image: ghcr.io/mikejohnpp/ai-service:c24c95563c8e6918dc8d52fa52575aa1a846177e
           ports:
             - containerPort: 8080
           env:
