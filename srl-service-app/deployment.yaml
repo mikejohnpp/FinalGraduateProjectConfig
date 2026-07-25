@@ -19,7 +19,7 @@ spec:
         kubernetes.io/hostname: worker-3.k8s
       containers:
         - name: srl-service
-          image: ghcr.io/mikejohnpp/srl-service:c24c95563c8e6918dc8d52fa52575aa1a846177e
+          image: ghcr.io/mikejohnpp/srl-service:ec6288d55985d2e90b9677be56bb8c83297c4e8f
           ports:
             - containerPort: 8080
           env:
