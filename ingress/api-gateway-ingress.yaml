@@ -8,13 +8,13 @@ metadata:
 #    traefik.ingress.kubernetes.io/router.entrypoints: websecure
 #    traefik.ingress.kubernetes.io/router.tls.certresolver: le
 spec:
-#  ingressClassName: traefik
+  ingressClassName: traefik
 #  tls:
 #    - hosts:
 #        - api.vieface.io.vn
   rules:
-#    - host: api.vieface.io.vn
-    - http:
+    - host: api.vieface.io.vn
+      http:
         paths:
           - path: /
             pathType: Prefix
