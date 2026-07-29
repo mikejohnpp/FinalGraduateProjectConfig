@@ -17,7 +17,7 @@ spec:
       #   - name: ghcr-secret
       containers:
         - name: notification-service
-          image: ghcr.io/mikejohnpp/notification-service:e94984e1b9f27f339efc025e891790a15166e91b
+          image: ghcr.io/mikejohnpp/notification-service:c45aaae6616838eb5560141cf218e99ef08f65af
           ports:
             - containerPort: 8080
           env:
