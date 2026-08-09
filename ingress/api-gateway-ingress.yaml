@@ -5,13 +5,13 @@ metadata:
   namespace: default
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
-#    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-#    traefik.ingress.kubernetes.io/router.tls.certresolver: le
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls.certresolver: le
 spec:
   ingressClassName: traefik
-#  tls:
-#    - hosts:
-#        - api.vieface.io.vn
+  tls:
+    - hosts:
+        - api.vieface.io.vn
   rules:
     - host: api.vieface.io.vn
       http:
