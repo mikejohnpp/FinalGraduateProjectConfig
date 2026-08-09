@@ -9,6 +9,6 @@ spec:
     - ReadWriteMany
   nfs:
     path: /data
-    server: 192.168.100.4
+    server: 192.168.100.2
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-storage
