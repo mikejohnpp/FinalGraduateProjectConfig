@@ -15,8 +15,8 @@ spec:
     spec:
       # imagePullSecrets:
       #   - name: ghcr-secret
-      nodeSelector:
-        kubernetes.io/hostname: worker-3.k8s
+    #  nodeSelector:
+    #    kubernetes.io/hostname: worker-3.k8s
       containers:
         - name: srl-service
           image: ghcr.io/mikejohnpp/srl-service:c45aaae6616838eb5560141cf218e99ef08f65af
