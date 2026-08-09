@@ -44,7 +44,7 @@ spec:
           brokers:
             - broker: 0
               nodePort: 31694
-              advertisedHost: 35.187.243.148
+              advertisedHost: 34.1.141.242
               advertisedPort: 31694
     config:
       offsets.topic.replication.factor: 1
