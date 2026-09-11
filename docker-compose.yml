@@ -67,6 +67,7 @@ services:
     restart: unless-stopped
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: "3000"
       DB_URL: jdbc:mysql://mysql-service/FinalGraduateDB?zeroDateTimeBehavior=convertToNull
       DB_USERNAME: root
       DB_PASSWORD: ""
@@ -82,11 +83,15 @@ services:
     restart: unless-stopped
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: "3000"
+      KAFKA_BOOTSTRAP: kafka:9092
       DB_URL: jdbc:mysql://mysql-service/FinalGraduateDB?zeroDateTimeBehavior=convertToNull
       DB_USERNAME: root
       DB_PASSWORD: ""
     depends_on:
       mysql-service:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
     networks:
       - app-network
@@ -97,6 +102,8 @@ services:
     restart: unless-stopped
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: "3000"
+      KAFKA_BOOTSTRAP: kafka:9092
       DB_URL: jdbc:mysql://mysql-service/FinalGraduateDB?zeroDateTimeBehavior=convertToNull
       DB_USERNAME: root
       DB_PASSWORD: ""
@@ -108,6 +115,8 @@ services:
         condition: service_healthy
       redis-service:
         condition: service_healthy
+      kafka:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -117,11 +126,15 @@ services:
     restart: unless-stopped
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: "3000"
+      KAFKA_BOOTSTRAP: kafka:9092
       DB_URL: jdbc:mysql://mysql-service/FinalGraduateDB?zeroDateTimeBehavior=convertToNull
       DB_USERNAME: root
       DB_PASSWORD: ""
     depends_on:
       mysql-service:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
     networks:
       - app-network
