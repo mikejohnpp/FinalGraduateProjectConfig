@@ -1,7 +1,5 @@
 name: final-graduate-project
 
-x-app-image-tag: &image_tag b3371d2430e4c8b33bee88ee643c00e4e8675b78
-
 services:
   mysql-service:
     image: mysql:8.4.9
@@ -64,7 +62,7 @@ services:
       - app-network
 
   auth-service:
-    image: ghcr.io/mikejohnpp/auth-service:*image_tag
+    image: ghcr.io/mikejohnpp/auth-service:${IMAGE_TAG:-b3371d2430e4c8b33bee88ee643c00e4e8675b78}
     container_name: auth-service
     restart: unless-stopped
     environment:
@@ -79,7 +77,7 @@ services:
       - app-network
 
   user-service:
-    image: ghcr.io/mikejohnpp/user-service:*image_tag
+    image: ghcr.io/mikejohnpp/user-service:${IMAGE_TAG:-b3371d2430e4c8b33bee88ee643c00e4e8675b78}
     container_name: user-service
     restart: unless-stopped
     environment:
@@ -94,7 +92,7 @@ services:
       - app-network
 
   chat-service:
-    image: ghcr.io/mikejohnpp/chat-service:*image_tag
+    image: ghcr.io/mikejohnpp/chat-service:${IMAGE_TAG:-b3371d2430e4c8b33bee88ee643c00e4e8675b78}
     container_name: chat-service
     restart: unless-stopped
     environment:
@@ -114,7 +112,7 @@ services:
       - app-network
 
   notification-service:
-    image: ghcr.io/mikejohnpp/notification-service:*image_tag
+    image: ghcr.io/mikejohnpp/notification-service:${IMAGE_TAG:-b3371d2430e4c8b33bee88ee643c00e4e8675b78}
     container_name: notification-service
     restart: unless-stopped
     environment:
@@ -129,7 +127,7 @@ services:
       - app-network
 
   api-gateway:
-    image: ghcr.io/mikejohnpp/api-gateway:*image_tag
+    image: ghcr.io/mikejohnpp/api-gateway:${IMAGE_TAG:-b3371d2430e4c8b33bee88ee643c00e4e8675b78}
     container_name: api-gateway
     restart: unless-stopped
     environment:
