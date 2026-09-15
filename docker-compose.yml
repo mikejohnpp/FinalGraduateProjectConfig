@@ -91,6 +91,8 @@ services:
       DB_URL: jdbc:mysql://mysql-service/FinalGraduateDB?zeroDateTimeBehavior=convertToNull
       DB_USERNAME: root
       DB_PASSWORD: ""
+      SMTP_EMAIL: "ltphat240109@gmail.com"
+      SMTP_PASSWORD: "jbiw stcq lzvq zkrp"
     depends_on:
       mysql-service:
         condition: service_healthy
@@ -210,4 +212,3 @@ networks:
 volumes:
   mysql_data:
   kafka_data:
-
